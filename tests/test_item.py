@@ -29,3 +29,10 @@ def test_calculate_total_price(name, price, quantity):
     item = Item(name, price, quantity)
     assert item.calculate_total_price() == price * quantity
 
+
+@pytest.mark.parametrize("name, price, quantity",
+                         [("Мышка", 50, 5)])
+def test_apply_discount(name, price, quantity):
+    item = Item(name, price, quantity)
+    item.apply_discount()
+    assert item.price == price * Item.pay_rate
